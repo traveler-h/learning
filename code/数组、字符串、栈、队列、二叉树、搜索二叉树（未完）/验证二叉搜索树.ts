@@ -10,24 +10,24 @@ class TreeNode {
   }
 }
 
-// var isValidBST = function(root) {
-//     let stack = [];
-//     let inorder = -Infinity;
+var isValidBST = function(root) {
+    let stack = [];
+    let inorder = -Infinity;
 
-//     while (stack.length || root !== null) {
-//         while (root !== null) {
-//             stack.push(root);
-//             root = root.left;
-//         }
-//         root = stack.pop();
-//         if (root.val <= inorder) {
-//             return false;
-//         }
-//         inorder = root.val;
-//         root = root.right;
-//     }
-//     return true;
-// };
+    while (stack.length || root !== null) {
+        while (root !== null) {
+            stack.push(root);
+            root = root.left;
+        }
+        root = stack.pop();
+        if (root.val <= inorder) {
+            return false;
+        }
+        inorder = root.val;
+        root = root.right;
+    }
+    return true;
+};
 // 递归
 const helper = (root: TreeNode, lower: number, upper: number) => {
     if (root === null) {
@@ -40,7 +40,7 @@ const helper = (root: TreeNode, lower: number, upper: number) => {
     }
     return helper(root.left, lower, root.val) && helper(root.right, root.val, upper);
 }
-var isValidBST = function(root) {
+var isValidBST1 = function(root) {
     return helper(root, -Infinity, Infinity);
 };
 

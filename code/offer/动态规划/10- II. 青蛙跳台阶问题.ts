@@ -4,5 +4,13 @@
  */
 
 function numWays(n: number): number {
-    return 1
+    if(n === 0 || n === 1) return 1
+    if(n === 2) return 2
+    let a = 1, b = 2
+    for(let i = 3; i <= n; i++) {
+        b += a 
+        a = b - a 
+        b %= 1000000007
+    }
+    return b
 };

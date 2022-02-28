@@ -29,5 +29,5 @@ function inorderTraversal(root: TreeNode | null): number[] {
     }
 }
 
-const head = new TreeNode(1, {val: 4, left: null, right: null,}, { val: 2, left: { val: 3, left: null, right: null }, right: null })
+const head: TreeNode = new TreeNode(1, {val: 4, left: null, right: null,}, { val: 2, left: { val: 3, left: null, right: null }, right: null })
 inorderTraversal(head)

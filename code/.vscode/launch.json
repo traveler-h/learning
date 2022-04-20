@@ -6,11 +6,15 @@
     "configurations": [
         
         {
-            "type": "pwa-chrome",
+            "type": "node",
             "request": "launch",
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:8080",
-            "webRoot": "${workspaceFolder}"
+            "webRoot": "${workspaceFolder}",
+            "program": "${workspaceRoot}/dist/_bin.js",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "protocol": "inspector"
         }
     ]
 }

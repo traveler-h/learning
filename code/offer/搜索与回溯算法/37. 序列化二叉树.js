@@ -9,9 +9,9 @@
  * 输出：[1,2,3,null,null,4,5]
  */
 class Node {
+    val
     left
     right
-    val
     constructor(val, left, right) {
         this.val = val
         this.left = left
@@ -27,17 +27,48 @@ function Serialize(root) {
         while (_root.length > 0) {
             node = _root.shift()
             if (node === null) {
-                res = res + "null, "
+                res = res + "null,"
             } else {
-                res = res + (node?.val || node) + ", "
+                res = res + (node?.val || node) + ","
                 _root.push(node.left)
                 _root.push(node.right)
             }
         }
-        res = res.slice(0,-2) + ']'
+        res = res.slice(0,-1) + ']'
     }
     handelRoot()
-    console.log(res)
+    return res
+}
+
+// 反序列化二叉树
+function deserialize(str) {
+    if (str === '[]') return null
+    let _str = str.slice(1, -1).split(',')
+    let i = 1
+    let root = new Node(+_str[0])
+    const handelStr = (root) => {
+        if(root === null) return
+        while (i <= _str.length) {
+            if (_str[i] !== 'null') {
+                root.left = new Node(+_str[i], null, null)
+            } else {
+                root.left = null
+            }
+            i++
+            if (_str[i] !== 'null') {
+                root.right = new Node(+_str[i], null, null)
+            } else {
+                root.right = null
+            }
+            i++
+            console.log('root:', root,'left;',root.left, 'right:',root.right)
+            root.left  && handelStr(root.left)
+            root.right && handelStr(root.right)
+        }
+        
+    }
+    handelStr(root)
+    console.log(root)
 }
 let root = new Node()
 root = {
@@ -49,5 +80,8 @@ root = {
         right: { val: 5, left: null, right: null }
     }
 }
-Serialize(root)
+const str = Serialize(root)
+console.log(str)
+deserialize(str)
+
 

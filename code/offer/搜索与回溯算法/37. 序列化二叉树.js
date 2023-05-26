@@ -23,20 +23,22 @@ function Serialize(root) {
     if (root === null) return "[]"
     let _root = [root]
     let res = "["
-    const handelRoot = () => {
-        while (_root.length > 0) {
-            node = _root.shift()
-            if (node === null) {
-                res = res + "null,"
-            } else {
-                res = res + (node?.val || node) + ","
-                _root.push(node.left)
-                _root.push(node.right)
-            }
+    while (_root.length > 0) {
+        
+        node = _root.shift()
+        if (node === null) {
+            res = res + "null,"
+        } else {
+            res = res + (node?.val || node) + ","
+            _root.push(node.left)
+            _root.push(node.right)
         }
-        res = res.slice(0,-1) + ']'
+        if(_root.every(item => item == null)) {
+            _root=[]
+        }
     }
-    handelRoot()
+    res = res.slice(0,-1) + ']'
+    console.log(res)
     return res
 }
 
@@ -61,14 +63,15 @@ function deserialize(str) {
                 root.right = null
             }
             i++
-            console.log('root:', root,'left;',root.left, 'right:',root.right)
+            // console.log('root:', root,'left;',root.left, 'right:',root.right)
             root.left  && handelStr(root.left)
             root.right && handelStr(root.right)
         }
         
     }
     handelStr(root)
-    console.log(root)
+    return root
+    // console.log(root)
 }
 let root = new Node()
 root = {
@@ -80,8 +83,7 @@ root = {
         right: { val: 5, left: null, right: null }
     }
 }
-const str = Serialize(root)
-console.log(str)
-deserialize(str)
+Serialize(root)
+// deserialize(Serialize(root))
 
 

@@ -7,13 +7,13 @@
  */
 
 //----------延后
-function permutation(s){
-    const result = []
-    const length = s.length
+function permutation(s: string): string[] {
+    const result: string[] = []
+    const length: number = s.length
 
     const set = new Set()
-    let tmp = []
-    const dfs = (array) => {
+    let tmp: string[] = []
+    const dfs = (array: string) => {
         if(tmp.length === length) {
             result.push(tmp.join(''))
             return
@@ -32,3 +32,5 @@ function permutation(s){
 };
 const s = "abc"
 permutation(s)
+
+export { }
